@@ -1,0 +1,507 @@
+{
+    "drawflow": {
+      "Home": {
+        "data": {
+          "1": {
+            "id": 1,
+            "name": "Load_dataset",
+            "data": {
+              "pos_x": -282.9400085449219,
+              "pos_y": -92.53999786376954
+            },
+            "class": "Load_dataset",
+            "html": "\n        <div class=\"node-content\">\n            <div class=\"title-box\"><i class=\"mdi mdi-camera-burst\"></i> データ読み込み</div>\n            <div class=\"box\">\n                <div class=\"inputs-container\">\n                    \n            <div class=\"input-area\">\n                <!-- <div class=\"input\" data-type=\"List\"></div> -->\n                <span class=\"input-label\">\n                    <i class=\"mdi mdi-format-list-bulleted\" style=\"color: #FF5722;\"></i>\n                    train\n                </span>\n            </div>\n        \n            <div class=\"input-area\">\n                <!-- <div class=\"input\" data-type=\"List\"></div> -->\n                <span class=\"input-label\">\n                    <i class=\"mdi mdi-format-list-bulleted\" style=\"color: #FF5722;\"></i>\n                    test\n                </span>\n            </div>\n        \n                </div>\n                <div class=\"outputs-container\">\n                    \n            <div class=\"output-area\">\n                <span class=\"output-label\">\n                    <i class=\"mdi mdi-format-list-bulleted\" style=\"color: #FF5722;\"></i>\n                    train\n                </span>\n                <!-- <div class=\"output\" data-type=\"List\"></div> -->\n            </div>\n        \n            <div class=\"output-area\">\n                <span class=\"output-label\">\n                    <i class=\"mdi mdi-format-list-bulleted\" style=\"color: #FF5722;\"></i>\n                    test\n                </span>\n                <!-- <div class=\"output\" data-type=\"List\"></div> -->\n            </div>\n        \n                </div>\n            </div>\n            <div class=\"node-settings\">\n                <button class=\"settings-btn\" onclick=\"showPropertyEditor(event)\">\n                    <i class=\"mdi mdi-cog\"></i>\n                </button>\n            </div>\n        </div>\n        ",
+            "typenode": false,
+            "inputs": {
+              "input_1": {
+                "connections": [
+                  {
+                    "node": "2",
+                    "input": "output_1"
+                  }
+                ]
+              },
+              "input_2": {
+                "connections": [
+                  {
+                    "node": "3",
+                    "input": "output_1"
+                  }
+                ]
+              }
+            },
+            "outputs": {
+              "output_1": {
+                "connections": [
+                  {
+                    "node": "4",
+                    "output": "input_1"
+                  },
+                  {
+                    "node": "5",
+                    "output": "input_1"
+                  },
+                  {
+                    "node": "6",
+                    "output": "input_3"
+                  }
+                ]
+              },
+              "output_2": {
+                "connections": [
+                  {
+                    "node": "7",
+                    "output": "input_2"
+                  }
+                ]
+              }
+            },
+            "pos_x": 142.71428571428572,
+            "pos_y": 105,
+            "category": "data",
+            "inputs_type": [
+              {
+                "name": "train",
+                "type": "List"
+              },
+              {
+                "name": "test",
+                "type": "List"
+              }
+            ],
+            "outputs_type": [
+              {
+                "name": "train",
+                "type": "List"
+              },
+              {
+                "name": "test",
+                "type": "List"
+              }
+            ]
+          },
+          "2": {
+            "id": 2,
+            "name": "Pipeline",
+            "data": {
+              "transforms": "[\"resize\", \"random_horizontal_flip\", \"color_jitter\", \"to_tensor\", \"normalize\"]",
+              "pos_x": -251.4400085449219,
+              "pos_y": -88.33999786376954
+            },
+            "class": "Pipeline",
+            "html": "\n        <div class=\"node-content\">\n            <div class=\"title-box\"><i class=\"mdi mdi-pipe\"></i> 前処理のパイプライン</div>\n            <div class=\"box\">\n                <div class=\"inputs-container\">\n                    \n                </div>\n                <div class=\"outputs-container\">\n                    \n            <div class=\"output-area\">\n                <span class=\"output-label\">\n                    <i class=\"mdi mdi-format-list-bulleted\" style=\"color: #FF5722;\"></i>\n                    output\n                </span>\n                <!-- <div class=\"output\" data-type=\"List\"></div> -->\n            </div>\n        \n                </div>\n            </div>\n            <div class=\"node-settings\">\n                <button class=\"settings-btn\" onclick=\"showPropertyEditor(event)\">\n                    <i class=\"mdi mdi-cog\"></i>\n                </button>\n            </div>\n        </div>\n        ",
+            "typenode": false,
+            "inputs": {},
+            "outputs": {
+              "output_1": {
+                "connections": [
+                  {
+                    "node": "1",
+                    "output": "input_1"
+                  }
+                ]
+              }
+            },
+            "pos_x": -150.57142857142858,
+            "pos_y": 47.42857142857143,
+            "category": "preprocessing",
+            "inputs_type": [],
+            "outputs_type": [
+              {
+                "name": "output",
+                "type": "List"
+              }
+            ]
+          },
+          "3": {
+            "id": 3,
+            "name": "Pipeline",
+            "data": {
+              "transforms": "[\"resize\", \"to_tensor\", \"normalize\"]",
+              "pos_x": -271.7400085449219,
+              "pos_y": -84.83999786376955
+            },
+            "class": "Pipeline",
+            "html": "\n        <div class=\"node-content\">\n            <div class=\"title-box\"><i class=\"mdi mdi-pipe\"></i> 前処理のパイプライン</div>\n            <div class=\"box\">\n                <div class=\"inputs-container\">\n                    \n                </div>\n                <div class=\"outputs-container\">\n                    \n            <div class=\"output-area\">\n                <span class=\"output-label\">\n                    <i class=\"mdi mdi-format-list-bulleted\" style=\"color: #FF5722;\"></i>\n                    output\n                </span>\n                <!-- <div class=\"output\" data-type=\"List\"></div> -->\n            </div>\n        \n                </div>\n            </div>\n            <div class=\"node-settings\">\n                <button class=\"settings-btn\" onclick=\"showPropertyEditor(event)\">\n                    <i class=\"mdi mdi-cog\"></i>\n                </button>\n            </div>\n        </div>\n        ",
+            "typenode": false,
+            "inputs": {},
+            "outputs": {
+              "output_1": {
+                "connections": [
+                  {
+                    "node": "1",
+                    "output": "input_2"
+                  }
+                ]
+              }
+            },
+            "pos_x": -153.42857142857142,
+            "pos_y": 177,
+            "category": "preprocessing",
+            "inputs_type": [],
+            "outputs_type": [
+              {
+                "name": "output",
+                "type": "List"
+              }
+            ]
+          },
+          "4": {
+            "id": 4,
+            "name": "Initialize_model",
+            "data": {
+              "pos_x": -107.94000854492191,
+              "pos_y": -90.43999786376955
+            },
+            "class": "Initialize_model",
+            "html": "\n        <div class=\"node-content\">\n            <div class=\"title-box\"><i class=\"mdi mdi-arrow-u-left-bottom\"></i> モデルの初期化</div>\n            <div class=\"box\">\n                <div class=\"inputs-container\">\n                    \n            <div class=\"input-area\">\n                <!-- <div class=\"input\" data-type=\"List\"></div> -->\n                <span class=\"input-label\">\n                    <i class=\"mdi mdi-format-list-bulleted\" style=\"color: #FF5722;\"></i>\n                    train\n                </span>\n            </div>\n        \n                </div>\n                <div class=\"outputs-container\">\n                    \n            <div class=\"output-area\">\n                <span class=\"output-label\">\n                    <i class=\"mdi mdi-brain\" style=\"color: #673AB7;\"></i>\n                    model\n                </span>\n                <!-- <div class=\"output\" data-type=\"Model\"></div> -->\n            </div>\n        \n            <div class=\"output-area\">\n                <span class=\"output-label\">\n                    <i class=\"mdi mdi-brain\" style=\"color: #673AB7;\"></i>\n                    criterion\n                </span>\n                <!-- <div class=\"output\" data-type=\"Model\"></div> -->\n            </div>\n        \n            <div class=\"output-area\">\n                <span class=\"output-label\">\n                    <i class=\"mdi mdi-brain\" style=\"color: #673AB7;\"></i>\n                    optimizer\n                </span>\n                <!-- <div class=\"output\" data-type=\"Model\"></div> -->\n            </div>\n        \n            <div class=\"output-area\">\n                <span class=\"output-label\">\n                    <i class=\"mdi mdi-brain\" style=\"color: #673AB7;\"></i>\n                    scheduler\n                </span>\n                <!-- <div class=\"output\" data-type=\"Model\"></div> -->\n            </div>\n        \n                </div>\n            </div>\n            <div class=\"node-settings\">\n                <button class=\"settings-btn\" onclick=\"showPropertyEditor(event)\">\n                    <i class=\"mdi mdi-cog\"></i>\n                </button>\n            </div>\n        </div>\n        ",
+            "typenode": false,
+            "inputs": {
+              "input_1": {
+                "connections": [
+                  {
+                    "node": "1",
+                    "input": "output_1"
+                  }
+                ]
+              }
+            },
+            "outputs": {
+              "output_1": {
+                "connections": [
+                  {
+                    "node": "5",
+                    "output": "input_2"
+                  }
+                ]
+              },
+              "output_2": {
+                "connections": [
+                  {
+                    "node": "5",
+                    "output": "input_3"
+                  }
+                ]
+              },
+              "output_3": {
+                "connections": [
+                  {
+                    "node": "5",
+                    "output": "input_4"
+                  },
+                  {
+                    "node": "6",
+                    "output": "input_2"
+                  }
+                ]
+              },
+              "output_4": {
+                "connections": [
+                  {
+                    "node": "5",
+                    "output": "input_5"
+                  }
+                ]
+              }
+            },
+            "pos_x": 424.7142857142857,
+            "pos_y": -72,
+            "category": "model",
+            "inputs_type": [
+              {
+                "name": "train",
+                "type": "List"
+              }
+            ],
+            "outputs_type": [
+              {
+                "name": "model",
+                "type": "Model"
+              },
+              {
+                "name": "criterion",
+                "type": "Model"
+              },
+              {
+                "name": "optimizer",
+                "type": "Model"
+              },
+              {
+                "name": "scheduler",
+                "type": "Model"
+              }
+            ]
+          },
+          "5": {
+            "id": 5,
+            "name": "Train_model",
+            "data": {
+              "pos_x": -68.7400085449218,
+              "pos_y": -93.93999786376953
+            },
+            "class": "Train_model",
+            "html": "\n        <div class=\"node-content\">\n            <div class=\"title-box\"><i class=\"mdi mdi-brain\"></i> モデルの学習</div>\n            <div class=\"box\">\n                <div class=\"inputs-container\">\n                    \n            <div class=\"input-area\">\n                <!-- <div class=\"input\" data-type=\"List\"></div> -->\n                <span class=\"input-label\">\n                    <i class=\"mdi mdi-format-list-bulleted\" style=\"color: #FF5722;\"></i>\n                    train\n                </span>\n            </div>\n        \n            <div class=\"input-area\">\n                <!-- <div class=\"input\" data-type=\"Model\"></div> -->\n                <span class=\"input-label\">\n                    <i class=\"mdi mdi-brain\" style=\"color: #673AB7;\"></i>\n                    model\n                </span>\n            </div>\n        \n            <div class=\"input-area\">\n                <!-- <div class=\"input\" data-type=\"Model\"></div> -->\n                <span class=\"input-label\">\n                    <i class=\"mdi mdi-brain\" style=\"color: #673AB7;\"></i>\n                    criterion\n                </span>\n            </div>\n        \n            <div class=\"input-area\">\n                <!-- <div class=\"input\" data-type=\"Model\"></div> -->\n                <span class=\"input-label\">\n                    <i class=\"mdi mdi-brain\" style=\"color: #673AB7;\"></i>\n                    optimizer\n                </span>\n            </div>\n        \n            <div class=\"input-area\">\n                <!-- <div class=\"input\" data-type=\"Model\"></div> -->\n                <span class=\"input-label\">\n                    <i class=\"mdi mdi-brain\" style=\"color: #673AB7;\"></i>\n                    scheduler\n                </span>\n            </div>\n        \n                </div>\n                <div class=\"outputs-container\">\n                    \n            <div class=\"output-area\">\n                <span class=\"output-label\">\n                    <i class=\"mdi mdi-brain\" style=\"color: #673AB7;\"></i>\n                    model\n                </span>\n                <!-- <div class=\"output\" data-type=\"Model\"></div> -->\n            </div>\n        \n            <div class=\"output-area\">\n                <span class=\"output-label\">\n                    <i class=\"mdi mdi-brain\" style=\"color: #673AB7;\"></i>\n                    losses\n                </span>\n                <!-- <div class=\"output\" data-type=\"Model\"></div> -->\n            </div>\n        \n            <div class=\"output-area\">\n                <span class=\"output-label\">\n                    <i class=\"mdi mdi-brain\" style=\"color: #673AB7;\"></i>\n                    accuracies\n                </span>\n                <!-- <div class=\"output\" data-type=\"Model\"></div> -->\n            </div>\n        \n            <div class=\"output-area\">\n                <span class=\"output-label\">\n                    <i class=\"mdi mdi-brain\" style=\"color: #673AB7;\"></i>\n                    n_epochs\n                </span>\n                <!-- <div class=\"output\" data-type=\"Model\"></div> -->\n            </div>\n        \n            <div class=\"output-area\">\n                <span class=\"output-label\">\n                    <i class=\"mdi mdi-brain\" style=\"color: #673AB7;\"></i>\n                    device\n                </span>\n                <!-- <div class=\"output\" data-type=\"Model\"></div> -->\n            </div>\n        \n                </div>\n            </div>\n            <div class=\"node-settings\">\n                <button class=\"settings-btn\" onclick=\"showPropertyEditor(event)\">\n                    <i class=\"mdi mdi-cog\"></i>\n                </button>\n            </div>\n        </div>\n        ",
+            "typenode": false,
+            "inputs": {
+              "input_1": {
+                "connections": [
+                  {
+                    "node": "1",
+                    "input": "output_1"
+                  }
+                ]
+              },
+              "input_2": {
+                "connections": [
+                  {
+                    "node": "4",
+                    "input": "output_1"
+                  }
+                ]
+              },
+              "input_3": {
+                "connections": [
+                  {
+                    "node": "4",
+                    "input": "output_2"
+                  }
+                ]
+              },
+              "input_4": {
+                "connections": [
+                  {
+                    "node": "4",
+                    "input": "output_3"
+                  }
+                ]
+              },
+              "input_5": {
+                "connections": [
+                  {
+                    "node": "4",
+                    "input": "output_4"
+                  }
+                ]
+              }
+            },
+            "outputs": {
+              "output_1": {
+                "connections": [
+                  {
+                    "node": "6",
+                    "output": "input_1"
+                  },
+                  {
+                    "node": "7",
+                    "output": "input_1"
+                  }
+                ]
+              },
+              "output_2": {
+                "connections": []
+              },
+              "output_3": {
+                "connections": []
+              },
+              "output_4": {
+                "connections": [
+                  {
+                    "node": "6",
+                    "output": "input_4"
+                  }
+                ]
+              },
+              "output_5": {
+                "connections": [
+                  {
+                    "node": "7",
+                    "output": "input_3"
+                  }
+                ]
+              }
+            },
+            "pos_x": 837,
+            "pos_y": -67.57142857142857,
+            "category": "model",
+            "inputs_type": [
+              {
+                "name": "train",
+                "type": "List"
+              },
+              {
+                "name": "model",
+                "type": "Model"
+              },
+              {
+                "name": "criterion",
+                "type": "Model"
+              },
+              {
+                "name": "optimizer",
+                "type": "Model"
+              },
+              {
+                "name": "scheduler",
+                "type": "Model"
+              }
+            ],
+            "outputs_type": [
+              {
+                "name": "model",
+                "type": "Model"
+              },
+              {
+                "name": "losses",
+                "type": "Model"
+              },
+              {
+                "name": "accuracies",
+                "type": "Model"
+              },
+              {
+                "name": "n_epochs",
+                "type": "Model"
+              },
+              {
+                "name": "device",
+                "type": "Model"
+              }
+            ]
+          },
+          "6": {
+            "id": 6,
+            "name": "Save_model",
+            "data": {
+              "pos_x": -107.94000854492197,
+              "pos_y": -90.43999786376955
+            },
+            "class": "Save_model",
+            "html": "\n        <div class=\"node-content\">\n            <div class=\"title-box\"><i class=\"mdi mdi-bookmark-check-outline\"></i> 重みの保存</div>\n            <div class=\"box\">\n                <div class=\"inputs-container\">\n                    \n            <div class=\"input-area\">\n                <!-- <div class=\"input\" data-type=\"Model\"></div> -->\n                <span class=\"input-label\">\n                    <i class=\"mdi mdi-brain\" style=\"color: #673AB7;\"></i>\n                    model\n                </span>\n            </div>\n        \n            <div class=\"input-area\">\n                <!-- <div class=\"input\" data-type=\"Model\"></div> -->\n                <span class=\"input-label\">\n                    <i class=\"mdi mdi-brain\" style=\"color: #673AB7;\"></i>\n                    optimizer\n                </span>\n            </div>\n        \n            <div class=\"input-area\">\n                <!-- <div class=\"input\" data-type=\"List\"></div> -->\n                <span class=\"input-label\">\n                    <i class=\"mdi mdi-format-list-bulleted\" style=\"color: #FF5722;\"></i>\n                    train\n                </span>\n            </div>\n        \n            <div class=\"input-area\">\n                <!-- <div class=\"input\" data-type=\"Model\"></div> -->\n                <span class=\"input-label\">\n                    <i class=\"mdi mdi-brain\" style=\"color: #673AB7;\"></i>\n                    n_epochs\n                </span>\n            </div>\n        \n                </div>\n                <div class=\"outputs-container\">\n                    \n                </div>\n            </div>\n            <div class=\"node-settings\">\n                <button class=\"settings-btn\" onclick=\"showPropertyEditor(event)\">\n                    <i class=\"mdi mdi-cog\"></i>\n                </button>\n            </div>\n        </div>\n        ",
+            "typenode": false,
+            "inputs": {
+              "input_1": {
+                "connections": [
+                  {
+                    "node": "5",
+                    "input": "output_1"
+                  }
+                ]
+              },
+              "input_2": {
+                "connections": [
+                  {
+                    "node": "4",
+                    "input": "output_3"
+                  }
+                ]
+              },
+              "input_3": {
+                "connections": [
+                  {
+                    "node": "1",
+                    "input": "output_1"
+                  }
+                ]
+              },
+              "input_4": {
+                "connections": [
+                  {
+                    "node": "5",
+                    "input": "output_4"
+                  }
+                ]
+              }
+            },
+            "outputs": {},
+            "pos_x": 1249.4285714285713,
+            "pos_y": 52,
+            "category": "model",
+            "inputs_type": [
+              {
+                "name": "model",
+                "type": "Model"
+              },
+              {
+                "name": "optimizer",
+                "type": "Model"
+              },
+              {
+                "name": "train",
+                "type": "List"
+              },
+              {
+                "name": "n_epochs",
+                "type": "Model"
+              }
+            ],
+            "outputs_type": []
+          },
+          "7": {
+            "id": 7,
+            "name": "Evaluate_and_plot",
+            "data": {
+              "pos_x": -71.54000854492188,
+              "pos_y": -89.03999786376949
+            },
+            "class": "Evaluate_and_plot",
+            "html": "\n        <div class=\"node-content\">\n            <div class=\"title-box\"><i class=\"mdi mdi-checkbox-marked-circle\"></i> 評価とプロット</div>\n            <div class=\"box\">\n                <div class=\"inputs-container\">\n                    \n            <div class=\"input-area\">\n                <!-- <div class=\"input\" data-type=\"Model\"></div> -->\n                <span class=\"input-label\">\n                    <i class=\"mdi mdi-brain\" style=\"color: #673AB7;\"></i>\n                    model\n                </span>\n            </div>\n        \n            <div class=\"input-area\">\n                <!-- <div class=\"input\" data-type=\"List\"></div> -->\n                <span class=\"input-label\">\n                    <i class=\"mdi mdi-format-list-bulleted\" style=\"color: #FF5722;\"></i>\n                    test\n                </span>\n            </div>\n        \n            <div class=\"input-area\">\n                <!-- <div class=\"input\" data-type=\"Model\"></div> -->\n                <span class=\"input-label\">\n                    <i class=\"mdi mdi-brain\" style=\"color: #673AB7;\"></i>\n                    device\n                </span>\n            </div>\n        \n                </div>\n                <div class=\"outputs-container\">\n                    \n            <div class=\"output-area\">\n                <span class=\"output-label\">\n                    <i class=\"mdi mdi-decimal\" style=\"color: #8BC34A;\"></i>\n                    accuracy\n                </span>\n                <!-- <div class=\"output\" data-type=\"Float\"></div> -->\n            </div>\n        \n                </div>\n            </div>\n            <div class=\"node-settings\">\n                <button class=\"settings-btn\" onclick=\"showPropertyEditor(event)\">\n                    <i class=\"mdi mdi-cog\"></i>\n                </button>\n            </div>\n        </div>\n        ",
+            "typenode": false,
+            "inputs": {
+              "input_1": {
+                "connections": [
+                  {
+                    "node": "5",
+                    "input": "output_1"
+                  }
+                ]
+              },
+              "input_2": {
+                "connections": [
+                  {
+                    "node": "1",
+                    "input": "output_2"
+                  }
+                ]
+              },
+              "input_3": {
+                "connections": [
+                  {
+                    "node": "5",
+                    "input": "output_5"
+                  }
+                ]
+              }
+            },
+            "outputs": {
+              "output_1": {
+                "connections": []
+              }
+            },
+            "pos_x": 1215,
+            "pos_y": 270.57142857142856,
+            "category": "evaluation",
+            "inputs_type": [
+              {
+                "name": "model",
+                "type": "Model"
+              },
+              {
+                "name": "test",
+                "type": "List"
+              },
+              {
+                "name": "device",
+                "type": "Model"
+              }
+            ],
+            "outputs_type": [
+              {
+                "name": "accuracy",
+                "type": "Float"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }

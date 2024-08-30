@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Flow Designer Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/drawflow@0.0.59/dist/drawflow.min.css" rel="stylesheet" /> -->
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="../static/css/drawflow.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1 class="app-title">AI Flow Designer Pro</h1>
+            <div class="app-controls">
+                <button id="runBtn" class="btn btn-primary"><i class="mdi mdi-export"></i> Run</button>
+                <!-- <input type="text" id="fileNameInput" placeholder="ファイル名を入力" /> -->
+                <button id="exportBtn" class="btn btn-primary"><i class="mdi mdi-export"></i> Export</button>
+                <button id="importBtn" class="btn btn-primary"><i class="mdi mdi-import"></i> Import</button>
+                <button id="clearBtn" class="btn btn-danger"><i class="mdi mdi-delete"></i> Clear</button>
+                <div class="toggle-container">
+                  <input type="checkbox" id="darkModeToggle" class="toggle-input">
+                  <label for="darkModeToggle" class="toggle-label"></label>
+                </div>
+            </div>
+        </header>
+        <div class="main-content">
+            <aside class="sidebar">
+                <nav class="sidebar-nav">
+                    <div class="sidebar-section" id="data-section">
+                        <h3 class="section-title"><i class="mdi mdi-database"></i> データ</h3>
+                        <div class="node-buttons"></div>
+                    </div>
+                    <div class="sidebar-section" id="preprocessing-section">
+                        <h3 class="section-title"><i class="mdi mdi-cog"></i> 前処理</h3>
+                        <div class="node-buttons"></div>
+                    </div>
+                    <div class="sidebar-section" id="model-section">
+                        <h3 class="section-title"><i class="mdi mdi-brain"></i> モデル</h3>
+                        <div class="node-buttons"></div>
+                    </div>
+                    <div class="sidebar-section" id="evaluation-section">
+                        <h3 class="section-title"><i class="mdi mdi-chart-bar"></i> 評価</h3>
+                        <div class="node-buttons"></div>
+                    </div>
+                </nav>
+            </aside>
+            <main class="workflow-area">
+              <div class="workflow-controls">
+                  <button id="zoomInBtn" class="btn btn-icon"><i class="mdi mdi-plus"></i></button>
+                  <button id="zoomOutBtn" class="btn btn-icon"><i class="mdi mdi-minus"></i></button>
+                  <button id="zoomResetBtn" class="btn btn-icon"><i class="mdi mdi-refresh"></i></button>
+                  <button id="lockBtn" class="btn btn-icon"><i class="mdi mdi-lock-open"></i></button>
+              </div>
+              <div id="drawflow"></div>
+            </main>
+        </div>
+    </div>
+    <div id="propertyEditor" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-title">プロパティ編集</h2>
+            <form id="propertyForm"></form>
+            <div class="modal-actions">
+                <button id="updatePropertiesBtn" class="btn btn-primary">更新</button>
+                <button id="closeModalBtn" class="btn btn-secondary">閉じる</button>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/drawflow@0.0.59/dist/drawflow.min.js"></script> -->
+    <script src="../static/js/drawflow.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="static/js/script.js"></script>
+</body>
+</html>

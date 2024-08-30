@@ -1,0 +1,524 @@
+:root {
+  --primary-color: #3b82f6;
+  --primary-light: #60a5fa;
+  --secondary-color: #10b981;
+  --background-color: #f3f4f6;
+  --surface-color: #ffffff;
+  --text-color: #1f2937;
+  --text-light: #6b7280;
+  --border-color: #e5e7eb;
+  --hover-color: #f9fafb;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --node-selected-color: #93c5fd;
+  --transition-speed: 0.3s;
+}
+
+body.dark-mode {
+  --primary-color: #60a5fa;
+  --primary-light: #93c5fd;
+  --secondary-color: #34d399;
+  --background-color: #111827;
+  --surface-color: #1f2937;
+  --text-color: #f9fafb;
+  --text-light: #9ca3af;
+  --border-color: #374151;
+  --hover-color: #2d3748;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --node-selected-color: #3b82f6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.app-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.app-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 1rem;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all var(--transition-speed);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-light);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.btn-secondary:hover {
+  opacity: 0.9;
+}
+
+.btn-danger {
+  background-color: #ef4444;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #dc2626;
+}
+
+.btn-icon {
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: transparent;
+  color: var(--text-color);
+}
+
+.btn-icon:hover {
+  background-color: var(--hover-color);
+}
+
+.toggle-container {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.toggle-label {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+  background-color: var(--border-color);
+  border-radius: 12px;
+  transition: background-color var(--transition-speed);
+  cursor: pointer;
+}
+
+.toggle-label:before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  background-color: white;
+  transition: transform var(--transition-speed);
+}
+
+.toggle-input {
+  display: none;
+}
+
+.toggle-input:checked + .toggle-label {
+  background-color: var(--primary-color);
+}
+
+.toggle-input:checked + .toggle-label:before {
+  transform: translateX(24px);
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: var(--surface-color);
+  border-right: 1px solid var(--border-color);
+  overflow-y: auto;
+  transition: width var(--transition-speed);
+}
+
+.sidebar-nav {
+  padding: 1rem;
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-color);
+}
+
+.node-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.drag-drawflow {
+  padding: 0.75rem;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  cursor: move;
+  transition: all var(--transition-speed);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.drag-drawflow:hover {
+  background-color: var(--hover-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.workflow-area {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.workflow-controls {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+  background-color: var(--surface-color);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.workflow-controls button {
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.workflow-controls button:hover {
+  background-color: var(--hover-color);
+}
+
+#drawflow {
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-color);
+  background-image: 
+    radial-gradient(var(--border-color) 1px, transparent 1px),
+    radial-gradient(var(--border-color) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+}
+
+
+.drawflow .drawflow-node {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px var(--shadow-color);
+  transition: all var(--transition-speed);
+  width: 200px;
+  padding: 0;
+}
+/* .drawflow .drawflow-node {
+  width: 250px;
+  border-radius: 8px;
+  background-color: var(--surface-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0;
+} */
+
+.drawflow .drawflow-node:hover {
+  box-shadow: 0 6px 8px var(--shadow-color);
+  transform: translateY(-2px);
+}
+
+.drawflow .drawflow-node.selected {
+  background-color: var(--node-selected-color);
+  border-color: var(--primary-color);
+}
+
+.drawflow .drawflow-node .title-box {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.75rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  font-weight: 500;
+}
+
+.drawflow .drawflow-node .box {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.drawflow .drawflow-node .inputs-container,
+.drawflow .drawflow-node .outputs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  color: var(--text-color);
+}
+
+.drawflow .drawflow-node .input-area,
+.drawflow .drawflow-node .output-area {
+  display: flex;
+  align-items: center;
+}
+
+.drawflow .drawflow-node .input-area {
+  justify-content: flex-start;
+}
+
+.drawflow .drawflow-node .output-area {
+  justify-content: flex-end;
+}
+
+.drawflow .drawflow-node .input,
+.drawflow .drawflow-node .output {
+  width: 15px;
+  height: 15px;
+  background: var(--surface-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  top: 24px;
+}
+
+.drawflow .drawflow-node .input-label,
+.drawflow .drawflow-node .output-label {
+  font-size: 12px;
+  margin: 0 5px;
+}
+
+.drawflow .drawflow-node .input:hover,
+.drawflow .drawflow-node .output:hover {
+  background: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--surface-color);
+}
+
+.drawflow .drawflow-node .input.connected,
+.drawflow .drawflow-node .output.connected {
+  background: var(--primary-color);
+}
+
+.drawflow .drawflow-node .node-settings {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.drawflow .drawflow-node .settings-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* .drawflow .connection .main-path {
+  stroke: var(--primary-color);
+  stroke-width: 2px;
+  transition: all 0.1s ease;
+} */
+.drawflow .connection .main-path {
+  stroke-width: 3px;
+  stroke: var(--primary-color);
+  transition: all 0.1s ease;
+}
+
+.drawflow .connection .main-path:hover {
+  stroke-width: 3px;
+  filter: drop-shadow(0 0 3px var(--primary-color));
+}
+
+.drawflow-delete {
+  background: var(--surface-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.drawflow-delete:hover {
+  background: #ef4444;
+  color: white;
+}
+
+.drawflow_content_node {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: var(--surface-color);
+  margin: 10% auto;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.ai-assistant {
+  position: fixed;
+  top: 5rem;
+  right: 1rem;
+  width: 300px;
+  background-color: var(--surface-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px var(--shadow-color);
+  z-index: 100;
+}
+
+.ai-assistant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.ai-assistant-content {
+  padding: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;
+  }
+
+  .sidebar-nav {
+    padding: 0.5rem;
+  }
+
+  .section-title {
+    font-size: 0;
+  }
+
+  .section-title i {
+    font-size: 1.5rem;
+  }
+
+  .drag-drawflow span {
+    display: none;
+  }
+
+  .ai-assistant {
+    width: 100%;
+    bottom: 0;
+    right: 0;
+    border-radius: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-speed);
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  transition: border-color var(--transition-speed);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-light);
+}
+
+.drawflow-node {
+  transition: none !important;
+}
